@@ -1,0 +1,100 @@
+# telas do app
+
+# Gerenciador das Screens
+
+<Gerenciador>:
+
+
+    Menu:
+        name: 'menu'
+    
+    Widget1:
+        name: 'widget1'
+
+# Janela principal
+
+<Menu>:
+    # Layout Principal da janela
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 60
+        spacing: 20
+        Image:
+            source: 'Logo.png'
+            
+            size_hint_y: None
+            height: 100 
+            allow_stretch: True  
+
+        Button:
+            text: 'Janela 1'
+            size_hint_y: None
+            height: 80
+            on_release: app.root.current = 'widget1'
+
+        Button:
+            text: 'Assistente'
+            size_hint_y: None
+            height: 80
+
+        Button:
+            text: 'Sair'
+            size_hint_y: None
+            height: 60
+            on_release: app.stop()
+
+# Janela de adição de palavras
+
+<Widget1>:
+
+    BoxLayout:
+        GridLayout:
+            cols: 1
+
+            # Inserindo Action Bar
+            ActionBar:
+                ActionView:
+                    ActionPrevious:
+                        title:'Janela 1'
+                        on_release: app.root.current = 'menu'
+                   
+                    ActionButton:
+                        text:'Sair'
+                        on_release: app.stop()
+
+            BoxLayout:
+                size_hint_y: None
+                height: 30
+                TextInput:
+                    id: nova_palavra
+                Button:
+                    text: 'ADICIONAR'
+                    font_size: 10
+                    size_hint_x: None
+                    width: 75
+                    on_release: root.addWidget()
+            ScrollView:
+                BoxLayout:
+                    id: princBox
+                    size_hint_x: None
+                    width: self.minimum_width
+
+# Botão para remover as palavras
+
+<Rempalavra>:
+    cols: 1
+    size_hint_x: None
+    width: 450
+
+
+    Label:
+        id: removepalavra
+        font_size: 40
+    Button:
+        text: 'REMOVE'
+        size_hint_y: None
+        height: 40
+        on_release: app.root.get_screen('widget1').ids.princBox.remove_widget(root)
+
+
+
