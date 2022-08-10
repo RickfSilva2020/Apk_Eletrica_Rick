@@ -17,8 +17,22 @@
     # Layout Principal da janela
     BoxLayout:
         orientation: 'vertical'
-        padding: 60
+        padding: 50
         spacing: 20
+
+        # Instruções gráficas
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1
+             #R red, G verde, B azul A, transparencia
+            Rectangle:
+                size: self.size
+                #size: 100, 200
+                #pos: 0, 0
+                pos: self.pos
+                source: 'moldura4.jpg'
+
+
         Image:
             source: 'Logo.png'
             
@@ -26,22 +40,27 @@
             height: 100 
             allow_stretch: True  
 
-        Button:
+        BotaoPers:
+            
             text: 'Janela 1'
             size_hint_y: None
             height: 80
             on_release: app.root.current = 'widget1'
-
-        Button:
+           
+           
+        BotaoPers:
             text: 'Assistente'
             size_hint_y: None
             height: 80
 
-        Button:
+        BotaoPers:
+
             text: 'Sair'
             size_hint_y: None
             height: 60
-            on_release: app.stop()
+            # popup de confirmação
+            on_release: root.confirmacao
+   
 
 # Janela de adição de palavras
 
