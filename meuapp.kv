@@ -18,6 +18,7 @@
     BoxLayout:
         orientation: 'vertical'
         padding: 50
+
         spacing: 20
 
         # Instruções gráficas
@@ -59,7 +60,7 @@
             size_hint_y: None
             height: 60
             # popup de confirmação
-            on_release: root.confirmacao
+            on_release: root.confirmacao()
    
 
 # Janela de adição de palavras

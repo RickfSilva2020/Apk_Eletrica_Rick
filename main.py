@@ -8,7 +8,8 @@ from kivy.uix.label import Label
 from kivy.uix.behaviors.button import ButtonBehavior
 from kivy.graphics import Color, Ellipse, Rectangle
 from kivy.properties import ListProperty
-from kivy.uix import popup
+from kivy.uix.popup import Popup
+from kivy.uix.image import Image
 
 
 # CLASSE PARA GERENCIAR AS TELAS
@@ -16,9 +17,29 @@ class Gerenciador(ScreenManager):
     pass
 
 class Menu(Screen):
+    
+    # Confirmação de saída (popup)
     def confirmacao(self, *args):
         box = BoxLayout(orientation='vertical')
-        pop = popup(title = 'Deseja mesmo sair?', content = box)
+        botoes = BoxLayout(padding=10, spacing=10)
+        
+        pop = Popup(title = 'Deseja mesmo sair?', content = box, size_hint= (None, None),
+                    size=(300, 180))
+        
+        sim = BotaoPers(text='Sim', on_release = App.get_running_app().stop)
+        nao = BotaoPers(text = 'Não', on_release = pop.dismiss)
+        
+        botoes.add_widget(sim)
+        botoes.add_widget(nao)
+        
+        atencao = Image(source='atencao.png')
+        
+        box.add_widget(atencao)
+        box.add_widget(botoes)
+        
+        
+        pop.open()
+        
         
 #class Widget1(BoxLayout): # EM CASO DE UMA TELA
 class Widget1(Screen): # NO CASO DE MAIS DE UMA TELA
